@@ -1,0 +1,46 @@
+{
+  "name": "401-js-proof-of-life",
+  "version": "1.0.0",
+  "description": "Proof of Life",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint '**/*.js'",
+    "test": "jest --verbose --coverage --detectOpenHandles",
+    "test-watch": "jest --watchAll --verbose --coverage",
+    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json"
+  },
+  "author": "ِAbdallah",
+  "license": "MIT",
+  "devDependencies": {
+    "@code-fellows/supergoose": "^1.0.2",
+    "eslint": "^6.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "jest": "^24.9.0",
+    "json-server": "^0.16.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "is-url": "^1.2.4",
+    "jest-cli": "^26.0.1",
+    "jsdoc": "^3.6.4",
+    "minimist": "^1.2.5",
+    "mongoose": "^5.9.15",
+    "morgan": "^1.10.0",
+    "notes": "0.0.4"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdallah-401-advanced-javascript/notes.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Abdallah-401-advanced-javascript/notes/issues"
+  },
+  "homepage": "https://github.com/Abdallah-401-advanced-javascript/notes#readme"
+}
