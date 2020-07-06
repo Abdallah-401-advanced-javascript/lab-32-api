@@ -3,10 +3,10 @@
 const mongoose = require('mongoose');
 
 const todo = mongoose.Schema({
-  text: {type: String},
-  difficulty : {type: String},
-  complete: {type: Boolean},
-  assignee: {type: String},
+  text: {type: String , default: ''},
+  difficulty : {type: Number , default: 1},
+  complete: {type: Boolean, default: 0},
+  assignee: {type: String , default: '' },
 });
 
 module.exports = mongoose.model('todo', todo);
