@@ -20,12 +20,15 @@
     "json-server": "^0.16.1"
   },
   "dependencies": {
+    "base-64": "^0.1.0",
+    "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "is-url": "^1.2.4",
     "jest-cli": "^26.0.1",
     "jsdoc": "^3.6.4",
+    "jsonwebtoken": "^8.5.1",
     "minimist": "^1.2.5",
     "mongoose": "^5.9.15",
     "morgan": "^1.10.0",

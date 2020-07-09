@@ -3,6 +3,9 @@
 const express = require('express');
 const router = express.Router();
 const todo = require(`../models/todo/todo-model`);
+const basicAuth = require('./middleware/basic-auth-middleware');
+const oath = require('./middleware/oauth-middleware');
+const users = require('./users');
 
 
 
@@ -12,6 +15,48 @@ router.get('/todo', readTodo);
 router.post('/todo', createTodo);
 router.delete('/todo', deleteTodo);
 router.put('/todo', updateTodo);
+
+/** Signup-Signin Routes */
+
+router.post('/signup',signup);
+router.post('/signin',basicAuth,signin);
+router.get('/users',list);
+router.get('/oauth', oath, (req, res)=> {
+  res.status(200).send(req.token);
+});
+
+function signin(req, res, next) {
+  res.cookie(req.token);
+  res.status(200).send(req.token); // return token 4
+}
+
+function signup(req, res, next) {
+  //sign up route if we have the user, return failure, else return generated token.
+  let user = req.body;
+  console.log(user);
+  users.save(user).then(result => {
+    // generate a token and return it.
+    let token = users.generateTokenUp(result);
+    console.log('generated token',token);
+    // req.token=token;
+    res.cookie(token);
+    res.status(200).send(token);
+  }).catch(err=> {
+    console.log('ERR!!');
+    res.status(403).send('Invalid Signup! email is taken');
+  });
+}
+
+function list(req, res, next) {
+  users.list(undefined).then(result => {
+    console.log('prove of life');
+    console.log(result);
+    res.status(200).send(result);
+  }).catch(err=> {
+    console.log('ERR!!');
+    res.status(403).send('Listing error');
+  });
+}
 
 /**
  * 
