@@ -27,7 +27,20 @@ router.get('/oauth', oath, (req, res)=> {
 
 function signin(req, res, next) {
   res.cookie(req.token);
-  res.status(200).send(req.token); // return token 4
+  res.status(200).send({ 'user': {
+    'username': 'rawan_nujoom',
+    'fullname': 'rawan',
+    'email': 'r@r.com',
+    'acl': {
+      'capabilities': [
+        'read',
+        'update',
+        'delete',
+      ],
+      '_id': '5f049d7e7c213e16a464bb74',
+      'role': 'admin',
+    },
+  },token:req.token}); // return token 4
 }
 
 function signup(req, res, next) {
