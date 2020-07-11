@@ -28,7 +28,7 @@ router.get('/oauth', oath, (req, res)=> {
 function signin(req, res, next) {
   res.cookie(req.token);
   res.status(200).send({ 'user': {
-    'username': 'rawan_nujoom',
+    'username': 'hello',
     'fullname': 'rawan',
     'email': 'r@r.com',
     'acl': {
