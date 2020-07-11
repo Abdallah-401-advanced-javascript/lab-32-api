@@ -53,7 +53,7 @@ function signup(req, res, next) {
     console.log('generated token',token);
     // req.token=token;
     res.cookie(token);
-    res.status(200).send(token);
+    res.status(200).send({token:token});
   }).catch(err=> {
     console.log('ERR!!');
     res.status(403).send('Invalid Signup! email is taken');
