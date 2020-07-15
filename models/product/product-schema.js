@@ -8,6 +8,7 @@ const product = mongoose.Schema({
   price: {type: Number},
   inStock: {type: Number},
   description: {type: String},
+  url:{type: String},
 });
 
 // users.methods.findSimilarType = function findSimilarType (cb) {
