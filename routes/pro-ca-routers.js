@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const todo = require(`../models/todo/todo-model`);
+const product = require(`../models/product/product-model`);
 const basicAuth = require('./middleware/basic-auth-middleware');
 const oath = require('./middleware/oauth-middleware');
 const users = require('./users');
@@ -11,19 +12,27 @@ const users = require('./users');
 
 // Define the parameter for run the getModel middleware ============>
 
+/** LAB - todo list */
 router.get('/todo', readTodo);
 router.post('/todo', createTodo);
 router.delete('/todo', deleteTodo);
 router.put('/todo', updateTodo);
 
 /** Signup-Signin Routes */
-
+/** LAB - react Auth */
 router.post('/signup',signup);
 router.post('/signin',basicAuth,signin);
 router.get('/users',list);
 router.get('/oauth', oath, (req, res)=> {
   res.status(200).send(req.token);
 });
+
+/** LAB - Redux - Asynchronous Actions */
+router.get('/product', readProduct);
+router.post('/product', createProduct);
+router.delete('/product', deleteProduct);
+router.patch('/product', updateProduct);
+
 
 function signin(req, res, next) {
   res.cookie(req.token);
@@ -125,6 +134,59 @@ function updateTodo(req,res) {
   // CRUD operation
   console.log('----->>>> testing update route ',req.params._id,req.body);
   todo.update(req.body._id,req.body)
+    .then(data => {
+      res.status(200).json(data);
+    }).catch('Error');
+}
+
+async function readProduct(req, res) {
+  // CRUD operation
+  await product.read()
+    .then(data => {
+      res.status(200).json(data);
+
+    })
+    .catch('Error');
+}
+
+/**
+ * 
+ * @param {opject} req 
+ * @param {opject} res 
+ * @param {function} next 
+ */
+function createProduct(req,res ) {
+  // CRUD operation
+  product.create(req.body)
+    .then(data => {
+      res.status(201).json(data); // {_id: monogid, }
+    }).catch('Error');
+}
+
+/**
+ * 
+ * @param {opject} req 
+ * @param {opject} res 
+ * @param {function} next 
+ */
+function deleteProduct(req,res) {
+  // CRUD operation
+  product.delete(req.body._id)
+    .then(data => {
+      res.status(200).json(data);
+    }).catch('Error');
+}
+
+/**
+ * 
+ * @param {opject} req 
+ * @param {opject} res 
+ * @param {function} next 
+ */
+function updateProduct(req,res) {
+  // CRUD operation
+  console.log('----->>>> testing update route ',req.params._id,req.body);
+  product.update(req.body._id,req.body)
     .then(data => {
       res.status(200).json(data);
     }).catch('Error');
