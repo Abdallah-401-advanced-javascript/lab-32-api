@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const todo = require(`../models/todo/todo-model`);
 const product = require(`../models/product/product-model`);
+const cart = require(`../models/cart/cart-model`);
 const basicAuth = require('./middleware/basic-auth-middleware');
 const oath = require('./middleware/oauth-middleware');
 const users = require('./users');
@@ -33,6 +34,10 @@ router.post('/product', createProduct);
 router.delete('/product', deleteProduct);
 router.patch('/product', updateProduct);
 
+router.get('/cart', readCart);
+router.post('/cart', createCart);
+router.delete('/cart', deleteCart);
+router.patch('/cart', updateCart);
 
 function signin(req, res, next) {
   res.cookie(req.token);
@@ -192,4 +197,57 @@ function updateProduct(req,res) {
     }).catch('Error');
 }
 
+/**
+ * 
+ * @param {opject} req 
+ * @param {opject} res 
+ * @param {function} next 
+ */
+async function readCart(req, res) {
+  // CRUD operation
+  await cart.read()
+    .then(data => {
+      res.status(200).json(data);
+
+    })
+    .catch('Error');
+}
+/**
+ * 
+ * @param {opject} req 
+ * @param {opject} res 
+ * @param {function} next 
+ */
+function createCart(req,res ) {
+  // CRUD operation
+  cart.create(req.body)
+    .then(data => {
+      res.status(201).json(data); // {_id: monogid, }
+    }).catch('Error');
+}
+
+
+/**
+ * 
+ * @param {opject} req 
+ * @param {opject} res 
+ * @param {function} next 
+ */
+function deleteCart(req,res) {
+  // CRUD operation
+  cart.delete(req.body._id)
+    .then(data => {
+      res.status(200).json(data);
+    }).catch('Error');
+}
+
+
+function updateCart(req,res) {
+  // CRUD operation
+  console.log('----->>>> testing update route ',req.params._id,req.body);
+  cart.update(req.body._id,req.body)
+    .then(data => {
+      res.status(200).json(data);
+    }).catch('Error');
+}
 module.exports = router;
