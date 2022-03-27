@@ -29,7 +29,7 @@
     "jest-cli": "^26.0.1",
     "jsdoc": "^3.6.4",
     "jsonwebtoken": "^8.5.1",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "mongoose": "^5.9.15",
     "morgan": "^1.10.0",
     "notes": "0.0.4",
