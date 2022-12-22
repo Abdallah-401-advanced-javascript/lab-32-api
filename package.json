@@ -28,7 +28,7 @@
     "is-url": "^1.2.4",
     "jest-cli": "^26.0.1",
     "jsdoc": "^3.6.4",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "minimist": "^1.2.5",
     "mongoose": "^5.9.15",
     "morgan": "^1.10.0",
